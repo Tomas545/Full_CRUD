@@ -1,0 +1,26 @@
+<%- include("TopPage.ejs") %>
+<main>
+    <h1>
+        Themes
+    </h1>
+    <div id="AddForm">
+        <input type="text" name="themeName"  id="themeName"  placeholder="themeName" />
+        <input type="text" name="BackroundColor" id="BackroundColor" placeholder="BackroundColor" />
+        <input type="text" name="TextColor"   id="TextColor"   placeholder="TextColor" />
+        <button onclick="addNewLine();" >send</button>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th>Theme Name</th>
+            <th>Backround color</th>
+            <th>Text Color</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="mainTable">  </tbody>
+    </table>
+</main>
+<script src="/js/Theme_Crud.js"></script>
+<%- include("BottomPage.ejs") %>
