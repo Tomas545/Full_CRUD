@@ -6,6 +6,7 @@ function CreateTble(){
     for(let line of raw_data){
         str+="<tr>";
         str+=`<td><button onclick="editLine(${line.id});">edit</button></td>`;
+        str+="<td>"+line.id+"</td>";
         str+="<td>"+line.themeName+"</td>";
         str+="<td>"+line.BackroundColor+"</td>";
         str+="<td>"+line.TextColor+"</td>";
@@ -41,10 +42,11 @@ async function addNewLine() {
     getList();
 }
 async function deleteLine(id) {
+    //let Name= id;
     let objToServer={};
     objToServer.idx=id;
     let response = await fetch('/Delete', {
-            method: 'POST',
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -58,11 +60,11 @@ async function deleteLine(id) {
 async function editLine(id) {
     let objToServer={};
     objToServer.idx=id;
-    objToServer.name=document.getElementById("name").value;
-    objToServer.phone=document.getElementById("phone").value;
-    objToServer.pob=document.getElementById("pob").value;
-    let response = await fetch('/Update', {
-            method: 'POST',
+    objToServer.themeName=document.getElementById("themeName").value;
+    objToServer.BackroundColor=document.getElementById("BackroundColor").value;
+    objToServer.TextColor=document.getElementById("TextColor").value;
+    let response = await fetch('/Edit', {
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },

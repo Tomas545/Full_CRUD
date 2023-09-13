@@ -30,12 +30,12 @@ router.patch("/Edit",(req, res) => {
 
     //let themeName = req.body.themeName;
     let newAnswerObj = {};
-    newAnswerObj.NewthemeName = req.body.NewthemeName;
+    newAnswerObj.id = Number(req.body.idx);
     newAnswerObj.themeName = req.body.themeName;
     newAnswerObj.BackroundColor = req.body.BackroundColor;
     newAnswerObj.TextColor = req.body.TextColor;
 
-    const UpdateQuery = `UPDATE themes SET themeName = '${newAnswerObj.NewthemeName}',BackroundColor = '${newAnswerObj.BackroundColor}',TextColor = '${newAnswerObj.TextColor}' WHERE themeName = '${newAnswerObj.themeName}'`;
+    const UpdateQuery = `UPDATE themes SET themeName = '${newAnswerObj.themeName}',BackroundColor = '${newAnswerObj.BackroundColor}',TextColor = '${newAnswerObj.TextColor}' WHERE id = ${newAnswerObj.id}`;
 
     //let q=`UPDATE \`answers_tbl\`  SET \`Category_Text\`='${cat_Text}' WHERE id=${id} `;
 
@@ -51,11 +51,16 @@ router.patch("/Edit",(req, res) => {
 
 router.delete("/Delete",(req, res) => {
 
-    let id= req.body.themeName;
+    let id= Number(req.body.idx);
+    //let id= Number(req.body.idx) ;
+    //let id= Number(req.body.idx);
+
+    let q=`DELETE FROM \`themes\` WHERE id =${id}`;
 
     //let q=`DELETE FROM \`themes\` WHERE id='${id}' `;
+    //let q = `DELETE FROM \`themes`\ WHERE id = ${id}`;
 
-    let q=`DELETE FROM \`themes\` WHERE themeName ='${id}'`;
+    // let q=`DELETE FROM \`themes\` WHERE id = ${id}`;
 
 
     db_pool.query(q, function(err, rows, fields){
